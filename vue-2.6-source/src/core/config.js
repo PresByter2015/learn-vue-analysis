@@ -7,7 +7,7 @@ import {
 } from 'shared/util'
 
 import { LIFECYCLE_HOOKS } from 'shared/constants'
-
+// 全局的config
 export type Config = {
   // user
   optionMergeStrategies: { [key: string]: Function };

@@ -1,5 +1,5 @@
 /* @flow */
-
+// 从 'core/index' 导入Vue；然后到处Vue；里面还有一些全局静态的配置。
 import Vue from 'core/index'
 import config from 'core/config'
 import { extend, noop } from 'shared/util'
@@ -20,6 +20,7 @@ import platformDirectives from './directives/index'
 import platformComponents from './components/index'
 
 // install platform specific utils
+// 全局静态的配置
 Vue.config.mustUseProp = mustUseProp
 Vue.config.isReservedTag = isReservedTag
 Vue.config.isReservedAttr = isReservedAttr
@@ -34,6 +35,7 @@ extend(Vue.options.components, platformComponents)
 Vue.prototype.__patch__ = inBrowser ? patch : noop
 
 // public mount method
+// 全局的 $mount 的方法
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean

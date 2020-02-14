@@ -4,10 +4,10 @@ import config from '../config'
 import { initUse } from './use'
 import { initMixin } from './mixin'
 import { initExtend } from './extend'
-import { initAssetRegisters } from './assets'
+import { initAssetRegisters } from './assets'//创建注册方法；e.g. components、directives 等。
 import { set, del } from '../observer/index'
-import { ASSET_TYPES } from 'shared/constants'
-import builtInComponents from '../components/index'
+import { ASSET_TYPES } from 'shared/constants'//合并一些方法
+import builtInComponents from '../components/index'//内置组件 KeepAlive
 import { observe } from 'core/observer/index'
 
 import {
@@ -21,7 +21,7 @@ import {
 export function initGlobalAPI (Vue: GlobalAPI) {
   // config
   const configDef = {}
-  configDef.get = () => config
+  configDef.get = () => config //往Vue上 挂载config 内容
   if (process.env.NODE_ENV !== 'production') {
     configDef.set = () => {
       warn(
@@ -32,9 +32,9 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   Object.defineProperty(Vue, 'config', configDef)
 
   // exposed util methods.
-  // NOTE: these are not considered part of the public API - avoid relying on
+  // NOTE: these are not considered part of the public API - avoid relying on 这些不是公共API的一部分-避免依赖
   // them unless you are aware of the risk.
-  Vue.util = {
+  Vue.util = {//定义Vue的方法；不建议外部使用
     warn,
     extend,
     mergeOptions,
@@ -59,10 +59,10 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // this is used to identify the "base" constructor to extend all plain-object
   // components with in Weex's multi-instance scenarios.
   Vue.options._base = Vue
-
+  //通过extend方法，把内置组件builtInComponents放入到components
   extend(Vue.options.components, builtInComponents)
 
-  initUse(Vue)
+  initUse(Vue) //创建Vue.use方法
   initMixin(Vue)
   initExtend(Vue)
   initAssetRegisters(Vue)
